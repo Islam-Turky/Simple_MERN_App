@@ -23,6 +23,7 @@ const Login = () => {
                 if(res.data.msg === 'Ok User exist' || res.data.msg === 'Ok Admin exist'){
                     window.localStorage.setItem('theName', res.data.name);
                     window.localStorage.setItem('theEmail', email);
+                    window.localStorage.setItem('social_media', res.data.mySocialLinks? JSON.stringify(res.data.mySocialLinks) : '');
                     history('/');
                 }else if(res.data.msg === 'User not found'){
                     alert('User not found');
