@@ -16,7 +16,7 @@ const Header = () => {
     const confirmLinks =  async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         try{
-            await axios.post('http://localhost:8080/api/sociallinks', {
+            await axios.post('https://custom-portfolio.onrender.com/api/sociallinks', {
                 theEmail,
                 facebook,
                 instagram,

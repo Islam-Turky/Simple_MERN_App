@@ -15,7 +15,7 @@ const Login = () => {
     const submit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         try{
-            await axios.post('http://localhost:8080/', {
+            await axios.post('https://custom-portfolio.onrender.com/', {
                 email,
                 password,
                 typeUser
