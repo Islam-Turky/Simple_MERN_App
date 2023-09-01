@@ -37,15 +37,21 @@ const Header = () => {
         })
     }
 
+    const hiddenClass = () => {
+        if(!theName){
+            return 'hidden';
+        }
+    }
+
     return (
         <div id="nav-header">
             <div id="logo">{theName? theName : 'no user'}</div>
             <div className="links">
                 <div>
                     <Link to='/'>Home</Link>
-                    <Link to='/about'>About</Link>
-                    <Link to='/services'>Services</Link>
-                    <Link to='/contact'>Contact</Link>
+                    <Link to='/about' className={hiddenClass()}>About</Link>
+                    <Link to='/services' className={hiddenClass()}>Services</Link>
+                    <Link to='/contact' className={hiddenClass()}>Contact</Link>
                 </div>
             </div>
             <div className={theName? 'hidden' : 'shown'}>

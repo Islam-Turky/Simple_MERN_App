@@ -31,16 +31,17 @@ app.get('/', (req, res) => {
 
 app.post('/', async (req, res) => {
     const { email, password, typeUser } = req.body;
+    const checkSocial = await Social.findOne({ email: email });
     try {
         if (typeUser === 'user') {
             const checkUser = await User.findOne({ email: email, password: password });
             if(checkUser){
-                res.json({ msg:'Ok User exist', name: checkUser.userName});
+                res.json({ msg:'Ok User exist', name: checkUser.userName, mySocialLinks: checkSocial ? checkSocial : '' });
             }else{
                 res.json({ msg: 'User not found'});
             }
         }else if(typeUser === 'admin'){
-            const checkAdmin = await Admin.findOne({ email: email, password: password });
+            const checkAdmin = await Admin.findOne({ email: email, password: password, mySocialLinks: checkSocial ? checkSocial : ''});
             if(checkAdmin){
                 res.json({msg: 'Ok Admin exist', name: checkAdmin.userName});
             }else{
