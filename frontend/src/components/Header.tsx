@@ -12,6 +12,7 @@ const Header = () => {
     const [telegram, setTelegram] = useState('');
     const theName = window.localStorage.getItem('theName');
     const theEmail = window.localStorage.getItem('theEmail');
+    const socialLinks = window.localStorage.getItem('social_media');
 
     const confirmLinks =  async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
@@ -55,15 +56,15 @@ const Header = () => {
                 <div id='sidebar'>
                     <div><a href="#" onClick={() => {setShow(!show)}}><FaBars /></a></div>
                     <div id="wrapper" className={ show ? 'showSide' : 'hideSide' }>
-                        <div className="side">
+                        <div className={socialLinks? 'side' : 'hideSide'}>
                             <Popup trigger={<button className='pop-btn'>Links Setting</button>} modal nested>
                                 <div id="social-links-settings">
                                     <h1>Links</h1>
                                     <form action="POST">
-                                        <input type='text' className='input-link' placeholder='Facebook-Link' onChange={(e) => {setFacebook(e.target.value)}}/>
-                                        <input type='text' className='input-link' placeholder='Instagram-Link' onChange={(e) => {setInstagram(e.target.value)}} />
-                                        <input type='text' className='input-link' placeholder='Whatsapp-Link' onChange={(e) => {setWhatsapp(e.target.value)}} />
-                                        <input type='text' className='input-link' placeholder='Telegram-Link' onChange={(e) => {setTelegram(e.target.value)}} />
+                                        <input type='text' className='input-link' placeholder='Facebook-Link' onChange={(e) => {setFacebook(e.target.value)}} required/>
+                                        <input type='text' className='input-link' placeholder='Instagram-Link' onChange={(e) => {setInstagram(e.target.value)}} required/>
+                                        <input type='text' className='input-link' placeholder='Whatsapp-Link' onChange={(e) => {setWhatsapp(e.target.value)}} required/>
+                                        <input type='text' className='input-link' placeholder='Telegram-Link' onChange={(e) => {setTelegram(e.target.value)}} required/>
                                         <input type='submit' name="submit-links" id="submit-links" value='OK' onClick={confirmLinks} />
                                     </form>
                                 </div>

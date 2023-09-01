@@ -26,6 +26,7 @@ const Signup = () => {
                     history('/login');
                 }else if(res.data === "User Not exist" || res.data === "Admin Not exist"){
                     window.localStorage.setItem('theName', name);
+                    window.localStorage.setItem('theEmail', email);
                     history('/');
                 }
             }).catch((err) => console.log('Error : '+ err));

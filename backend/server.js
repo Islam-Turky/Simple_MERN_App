@@ -113,4 +113,4 @@ app.post('/api/sociallinks', async (req, res) => {
 })
 
 // OUR LOCALHOST.
-app.listen(process.env.PORT,() => console.log(`server listening on http://localhost:${process.env.PORT}`));
+app.listen(process.env.PORT,() => console.log(`server listening is running successfully...`));
