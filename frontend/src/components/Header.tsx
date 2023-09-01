@@ -56,7 +56,7 @@ const Header = () => {
                 <div id='sidebar'>
                     <div><a href="#" onClick={() => {setShow(!show)}}><FaBars /></a></div>
                     <div id="wrapper" className={ show ? 'showSide' : 'hideSide' }>
-                        <div className={socialLinks? 'side' : 'hideSide'}>
+                        <div className={socialLinks? 'hideSide' : 'side'}>
                             <Popup trigger={<button className='pop-btn'>Links Setting</button>} modal nested>
                                 <div id="social-links-settings">
                                     <h1>Links</h1>
