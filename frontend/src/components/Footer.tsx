@@ -1,6 +1,6 @@
 const Footer = () => {
     const social_media = window.localStorage.getItem('social_media');
-    const social_media_url = JSON.parse(social_media);
+    const social_media_url = JSON.parse(social_media ? social_media : '#');
     const { facebook, instagram, whatsapp, telegram } = social_media_url;
     return (
         <div id="footer">

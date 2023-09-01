@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 
 
 const Login = () => {
@@ -12,7 +12,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [typeUser, setTypeUser] = useState('user');
 
-    const submit = async (e) => {
+    const submit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         try{
             await axios.post('http://localhost:8080/', {
@@ -37,7 +37,7 @@ const Login = () => {
         }
     }
 
-    const handleSelect = (e) => {
+    const handleSelect = (e: { target: { value: SetStateAction<string>; }; }) => {
         setTypeUser(e.target.value);
     }
 

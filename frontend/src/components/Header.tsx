@@ -13,7 +13,7 @@ const Header = () => {
     const theName = window.localStorage.getItem('theName');
     const theEmail = window.localStorage.getItem('theEmail');
 
-    const confirmLinks =  async (e:Event) => {
+    const confirmLinks =  async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         try{
             await axios.post('http://localhost:8080/api/sociallinks', {
@@ -30,9 +30,9 @@ const Header = () => {
         }catch(err){
             console.log(err);
         }
-        const input_link = document.querySelectorAll('.input-link');
+        const input_link = document.querySelectorAll('#social-links-settings form .input-link');
         input_link.forEach((item) => {
-            item.value = "";
+            item.ariaPlaceholder = "";
         })
     }
 

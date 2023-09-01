@@ -2,7 +2,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const Home = () => {
-    document.title = window.localStorage.getItem('theName') ? window.localStorage.getItem('theName') : 'no user';
+    const targetName = window.localStorage.getItem('theName');
+    document.title = targetName? targetName : 'no user';
     return (
         <>
             <Header/>
