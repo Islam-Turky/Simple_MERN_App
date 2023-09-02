@@ -17,6 +17,7 @@ const Header = () => {
     const theName = window.localStorage.getItem('theName');
     const theEmail = window.localStorage.getItem('theEmail');
     const socialLinks = window.localStorage.getItem('social_media');
+    const myImage = window.localStorage.getItem('myImage');
 
     const confirmLinks =  async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
@@ -48,12 +49,18 @@ const Header = () => {
                 theEmail,
                 theImage
             })
-            .then(response => console.log(response))
+            .then(response => {window.localStorage.setItem('myImage', response.data.image)})
             .catch(err => console.log(err));
         } catch (error) {
             console.log('error', error);
         }
     }
+
+    const handleImageUpload = (e) => {
+        if(e.target.files && e.target.files[0]){
+            setTheImage(URL.createObjectURL(e.target.files[0]));
+        }
+    };
 
     const hiddenClass = () => {
         if(!theName){
@@ -122,14 +129,14 @@ const Header = () => {
                         </div>
                         <div className="side">
                             <div className="myLink">
-                                <Popup trigger={<a href="#">Setting</a>} modal nested>
+                                <Popup trigger={<button className='pop-btn'>Setting</button>} modal nested>
                                     <div id="profile-setting">
                                         <h1>PROFILE</h1>
-                                        <div id="photoUpload" style={{ background: `url(${theEmail}) no-repeat` }}>
+                                        <div id="photoUpload" style={{ background: `url(${myImage}) no-repeat` }}>
 
                                         </div>
                                         <form action="POST">
-                                            <span><input type='file' value='Upload Image' onChange={(e) => { setTheImage(e.target.value) }}/></span>
+                                            <input type='file' onChange={handleImageUpload}/>
                                             <input type='submit' value='OK' onClick={handleImage}/>
                                         </form>
                                     </div>
@@ -143,6 +150,7 @@ const Header = () => {
                                     window.localStorage.setItem('theName', '');
                                     window.localStorage.setItem('theEmail', '');
                                     window.localStorage.setItem('social_media', '');
+                                    window.localStorage.setItem('myImage', '');
                                 }}>Logout</a>
                                 <span className="myIcon"><AiOutlineLogout /></span>
                             </div>
