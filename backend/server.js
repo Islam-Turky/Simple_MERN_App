@@ -3,7 +3,7 @@ Modules that we want to Make
 our server.
 */
 require('./mongoDB');
-const { User, Admin, Social } = require('./mongoDB');
+const { User, Admin, Social, profileImage } = require('./mongoDB');
 const mongoose = require('mongoose');
 const express = require('express');
 const morgan = require('morgan');
@@ -110,6 +110,23 @@ app.post('/api/sociallinks', async (req, res) => {
         }
     } catch (error) {
         console.log(error);
+    }
+})
+
+app.post('/api/images', async (req, res) => {
+    const { theEmail, theImage } = req.body;
+    const check = await profileImage.findOne({ email: theEmail });
+    if (!check) {
+        await profileImage.insertMany({ email: theEmail, image: theImage });
+        res.json({
+            msg: 'Image Added successfully',
+            image: theImage
+        })
+    }else{
+        res.json({
+            msg: 'Image already exists',
+            image: check.image
+        })
     }
 })
 

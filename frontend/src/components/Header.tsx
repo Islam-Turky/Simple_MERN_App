@@ -12,6 +12,8 @@ const Header = () => {
     const [instagram, setInstagram] = useState('');
     const [whatsapp, setWhatsapp] = useState('');
     const [telegram, setTelegram] = useState('');
+    const [theImage, setTheImage] = useState('');
+
     const theName = window.localStorage.getItem('theName');
     const theEmail = window.localStorage.getItem('theEmail');
     const socialLinks = window.localStorage.getItem('social_media');
@@ -37,6 +39,20 @@ const Header = () => {
         input_link.forEach((item) => {
             item.ariaPlaceholder = "";
         })
+    }
+
+    const handleImage = async (e: { preventDefault: () => void; }) => {
+        e.preventDefault();
+        try {
+            await axios.post('https://custom-portfolio.onrender.com/api/images', {
+                theEmail,
+                theImage
+            })
+            .then(response => console.log(response))
+            .catch(err => console.log(err));
+        } catch (error) {
+            console.log('error', error);
+        }
     }
 
     const hiddenClass = () => {
@@ -93,10 +109,10 @@ const Header = () => {
                                     <div id="social-links-settings">
                                         <h1>Links</h1>
                                         <form action="POST">
-                                            <input type='text' className='input-link' placeholder='Facebook-Link' onChange={(e) => {setFacebook(e.target.value)}} required/>
-                                            <input type='text' className='input-link' placeholder='Instagram-Link' onChange={(e) => {setInstagram(e.target.value)}} required/>
-                                            <input type='text' className='input-link' placeholder='Whatsapp-Link' onChange={(e) => {setWhatsapp(e.target.value)}} required/>
-                                            <input type='text' className='input-link' placeholder='Telegram-Link' onChange={(e) => {setTelegram(e.target.value)}} required/>
+                                            <input type='url' className='input-link' placeholder='Facebook-Link' onChange={(e) => {setFacebook(e.target.value)}} required/>
+                                            <input type='url' className='input-link' placeholder='Instagram-Link' onChange={(e) => {setInstagram(e.target.value)}} required/>
+                                            <input type='url' className='input-link' placeholder='Whatsapp-Link' onChange={(e) => {setWhatsapp(e.target.value)}} required/>
+                                            <input type='url' className='input-link' placeholder='Telegram-Link' onChange={(e) => {setTelegram(e.target.value)}} required/>
                                             <input type='submit' name="submit-links" id="submit-links" value='OK' onClick={confirmLinks} />
                                         </form>
                                     </div>
@@ -106,7 +122,18 @@ const Header = () => {
                         </div>
                         <div className="side">
                             <div className="myLink">
-                                <a href="#">Setting</a>
+                                <Popup trigger={<a href="#">Setting</a>} modal nested>
+                                    <div id="profile-setting">
+                                        <h1>PROFILE</h1>
+                                        <div id="photoUpload" style={{ background: `url(${theEmail}) no-repeat` }}>
+
+                                        </div>
+                                        <form action="POST">
+                                            <span><input type='image' value='Upload Image' onChange={(e) => { setTheImage(e.target.value) }}/></span>
+                                            <input type='submit' value='OK' onClick={handleImage}/>
+                                        </form>
+                                    </div>
+                                </Popup>
                                 <span className="myIcon"><AiTwotoneSetting /></span>
                             </div>
                         </div>

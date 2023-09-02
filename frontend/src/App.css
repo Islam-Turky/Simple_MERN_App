@@ -144,7 +144,8 @@
 }
 
 /* links popup */
-#social-links-settings{
+#social-links-settings,
+#profile-setting{
     background: #00000034;
     height: 40vh;
     width: 40vw;
@@ -193,6 +194,7 @@ a{
     display: flex;
     flex-direction: column;
     text-align: center;
+    display: none;
 }
 
 .sidelinks a{
@@ -220,8 +222,38 @@ a{
     color: whitesmoke;
 }
 
+#profile-setting form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
+}
+
+#profile-setting form span {
+    background: #b1ff1fc9;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+#profile-setting form span input{
+    font-size: 18px;
+    color: whitesmoke;
+    font-weight: 900;
+}
+
+#photoUpload{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+}
+
 @media screen and (max-width: 650px) {
     #nav-header .links{
         display: none;
+    }
+    #wrapper .sidelinks{
+        display: block;
     }
 }

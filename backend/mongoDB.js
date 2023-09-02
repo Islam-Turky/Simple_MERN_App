@@ -29,8 +29,14 @@ const socialLinks = new mongoose.Schema({
     telegram: { type: "String", required: true}
 });
 
+const profilePhoto = new mongoose.Schema({
+    email: { type: "String", required: true },
+    image: { type: "String", required: true }
+});
+
 const User = mongoose.model("User", userDB);
 const Admin = mongoose.model("Admin", adminDB);
 const Social = mongoose.model("Social", socialLinks);
+const profileImage = mongoose.model("Profile Image", profilePhoto);
 
-module.exports = { User, Admin, Social };
+module.exports = { User, Admin, Social, profileImage };
