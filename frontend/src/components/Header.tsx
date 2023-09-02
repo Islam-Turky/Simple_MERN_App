@@ -129,7 +129,7 @@ const Header = () => {
 
                                         </div>
                                         <form action="POST">
-                                            <span><input type='image' value='Upload Image' onChange={(e) => { setTheImage(e.target.value) }}/></span>
+                                            <span><input type='file' value='Upload Image' onChange={(e) => { setTheImage(e.target.value) }}/></span>
                                             <input type='submit' value='OK' onClick={handleImage}/>
                                         </form>
                                     </div>
