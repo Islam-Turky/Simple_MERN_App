@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaMobileScreenButton, FaInfo } from "react-icons/fa6";
+import { FaHome, FaPeopleCarry } from "react-icons/fa";
+import { AiFillHeart, AiOutlineLogout, AiTwotoneSetting } from "react-icons/ai";
 import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import axios from 'axios';
@@ -60,28 +62,63 @@ const Header = () => {
             </div>
             <div className={theName? 'shown' : 'hidden'}>
                 <div id='sidebar'>
-                    <div><a href="#" onClick={() => {setShow(!show)}}><FaBars /></a></div>
+                    <div id='info-container'>
+                        <div id='profile-icon'></div>
+                        <div><a href="#" onClick={() => {setShow(!show)}}><FaBars /></a></div>
+                    </div>
                     <div id="wrapper" className={ show ? 'showSide' : 'hideSide' }>
+                        <h1>SETTING</h1>
+                        <div className="sidelinks">
+                            <div className="myLink">
+                                <Link to='/'>Home</Link>
+                                <span className='myIcon'><FaHome /></span>
+                            </div>
+                            <div className='myLink'>
+                                <Link to='/about' className={hiddenClass()}>About</Link>
+                                <span className='myIcon'><FaInfo /></span>
+                            </div>
+                            <div className="myLink">
+                                <Link to='/services' className={hiddenClass()}>Services</Link>
+                                <span className='myIcon'><FaPeopleCarry /></span>
+                            </div>
+                            <div className="myLink">
+                                <Link to='/contact' className={hiddenClass()}>Contact</Link>
+                                <span className='myIcon'><FaMobileScreenButton /></span>
+                            </div>
+                        </div>
+                        <div className='hr'></div>
                         <div className={socialLinks? 'hideSide' : 'side'}>
-                            <Popup trigger={<button className='pop-btn'>Links Setting</button>} modal nested>
-                                <div id="social-links-settings">
-                                    <h1>Links</h1>
-                                    <form action="POST">
-                                        <input type='text' className='input-link' placeholder='Facebook-Link' onChange={(e) => {setFacebook(e.target.value)}} required/>
-                                        <input type='text' className='input-link' placeholder='Instagram-Link' onChange={(e) => {setInstagram(e.target.value)}} required/>
-                                        <input type='text' className='input-link' placeholder='Whatsapp-Link' onChange={(e) => {setWhatsapp(e.target.value)}} required/>
-                                        <input type='text' className='input-link' placeholder='Telegram-Link' onChange={(e) => {setTelegram(e.target.value)}} required/>
-                                        <input type='submit' name="submit-links" id="submit-links" value='OK' onClick={confirmLinks} />
-                                    </form>
-                                </div>
-                            </Popup>
+                            <div className="myLink">
+                                <Popup trigger={<button className='pop-btn'>Links Setting</button>} modal nested>
+                                    <div id="social-links-settings">
+                                        <h1>Links</h1>
+                                        <form action="POST">
+                                            <input type='text' className='input-link' placeholder='Facebook-Link' onChange={(e) => {setFacebook(e.target.value)}} required/>
+                                            <input type='text' className='input-link' placeholder='Instagram-Link' onChange={(e) => {setInstagram(e.target.value)}} required/>
+                                            <input type='text' className='input-link' placeholder='Whatsapp-Link' onChange={(e) => {setWhatsapp(e.target.value)}} required/>
+                                            <input type='text' className='input-link' placeholder='Telegram-Link' onChange={(e) => {setTelegram(e.target.value)}} required/>
+                                            <input type='submit' name="submit-links" id="submit-links" value='OK' onClick={confirmLinks} />
+                                        </form>
+                                    </div>
+                                </Popup>
+                                <span className='myIcon'><AiFillHeart /></span>
+                            </div>
+                        </div>
+                        <div className="side">
+                            <div className="myLink">
+                                <a href="#">Setting</a>
+                                <span className="myIcon"><AiTwotoneSetting /></span>
+                            </div>
                         </div>
                         <div className='side'>
-                            <a href="" onClick={() => {
-                                window.localStorage.setItem('theName', '');
-                                window.localStorage.setItem('theEmail', '');
-                                window.localStorage.setItem('social_media', '');
-                            }}>Logout</a>
+                            <div className="myLink">
+                                <a href="" onClick={() => {
+                                    window.localStorage.setItem('theName', '');
+                                    window.localStorage.setItem('theEmail', '');
+                                    window.localStorage.setItem('social_media', '');
+                                }}>Logout</a>
+                                <span className="myIcon"><AiOutlineLogout /></span>
+                            </div>
                         </div>
                     </div>
                 </div>

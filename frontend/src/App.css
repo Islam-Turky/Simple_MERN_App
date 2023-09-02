@@ -1,5 +1,5 @@
 #nav-header{
-    padding: 8px;
+    padding: 10px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -23,12 +23,34 @@
 #footer{
     width: 100%;
     display: flex;
+    align-items: center;
     justify-content: space-evenly;
-    /* gap: 500px; */
+}
+
+#footer .links{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 150px;
 }
 
 #footer .links a{
-    padding: 10px;
+    padding: 5px;
+    color: white;
+    font-size: 30px;
+}
+
+#facebook svg path {
+    color: #0778e9;
+}
+#instagram svg path {
+    color: #e00296;
+}
+#whatsapp svg path {
+    color: #41e25e;
+}
+#telegram svg path {
+    color: #24a2df;
 }
 
 #home,
@@ -79,20 +101,46 @@
 }
 
 #wrapper{
+    padding: 25px;
     align-items: center;
     position: absolute;
     top: 60px;
+    background-color: rgba(0, 0, 0, 0.301);
+    width: 250px;
+    height: calc(100% - 50px);
+    border-left: #b1ff1f 1px solid;
+    border-top: #b1ff1f 1px solid;
+    border-bottom: #b1ff1f 1px solid;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .showSide {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    right: 10px;
+    right: 0px;
 }
 
 .hideSide {
     display: none;
+}
+
+#info-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 130px;
+}
+
+#profile-icon{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: url(/vite.svg) no-repeat;
+    background-position: center;
+    background-size: cover;
+    cursor: pointer;
 }
 
 /* links popup */
@@ -134,10 +182,46 @@
 
 .side{
     padding: 5px;
-    border-bottom: 2px solid wheat;
 }
 
 a{
     font-size: 19px;
     font-weight: 400;
+}
+
+.sidelinks{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.sidelinks a{
+    padding: 5px;
+}
+
+.myLink{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 150px;
+}
+
+.hr{
+    width: 200px;
+    height: 1px;
+    background-color: aliceblue;
+}
+
+.myIcon{
+    font-size: 30px;
+}
+
+.myIcon svg path{
+    color: whitesmoke;
+}
+
+@media screen and (max-width: 650px) {
+    #nav-header .links{
+        display: none;
+    }
 }
