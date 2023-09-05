@@ -12,7 +12,7 @@ const Header = () => {
     const [instagram, setInstagram] = useState('');
     const [whatsapp, setWhatsapp] = useState('');
     const [telegram, setTelegram] = useState('');
-    const [theImage, setTheImage] = useState('');
+    // const [theImage, setTheImage] = useState('');
 
     const theName = window.localStorage.getItem('theName');
     const theEmail = window.localStorage.getItem('theEmail');
@@ -42,25 +42,25 @@ const Header = () => {
         })
     }
 
-    const handleImage = async (e: { preventDefault: () => void; }) => {
-        e.preventDefault();
-        try {
-            await axios.post('https://custom-portfolio.onrender.com/api/images', {
-                theEmail,
-                theImage
-            })
-            .then(response => {window.localStorage.setItem('myImage', response.data.image)})
-            .catch(err => console.log(err));
-        } catch (error) {
-            console.log('error', error);
-        }
-    }
+    // const handleImage = async (e: { preventDefault: () => void; }) => {
+    //     e.preventDefault();
+    //     try {
+    //         await axios.post('https://custom-portfolio.onrender.com/api/images', {
+    //             theEmail,
+    //             theImage
+    //         })
+    //         .then(response => {window.localStorage.setItem('myImage', response.data.image)})
+    //         .catch(err => console.log(err));
+    //     } catch (error) {
+    //         console.log('error', error);
+    //     }
+    // }
 
-    const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if(e.target.files && e.target.files[0]){
-            setTheImage(URL.createObjectURL(e.target.files[0]));
-        }
-    };
+    // const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     if(e.target.files && e.target.files[0]){
+    //         setTheImage(URL.createObjectURL(e.target.files[0]));
+    //     }
+    // };
 
     const hiddenClass = () => {
         if(!theName){
@@ -136,8 +136,8 @@ const Header = () => {
 
                                         </div>
                                         <form encType="multipart/form-data" action="http://localhost:8080/api/uploadfile" method='POST'>
-                                            <input type='file' onChange={handleImageUpload} id='uploadfile'/>
-                                            <input type='submit' value='OK' onClick={handleImage}/>
+                                            <input type='file'  id='uploadfile'/>
+                                            <input type='submit' value='upload' />
                                         </form>
                                     </div>
                                 </Popup>
