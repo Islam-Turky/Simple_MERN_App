@@ -135,8 +135,8 @@ const Header = () => {
                                         <div id="photoUpload" style={{ background: `url(${myImage}) no-repeat` }}>
 
                                         </div>
-                                        <form action="POST">
-                                            <input type='file' onChange={handleImageUpload}/>
+                                        <form encType="multipart/form-data" action="http://localhost:8080/api/uploadfile" method='POST'>
+                                            <input type='file' onChange={handleImageUpload} id='uploadfile'/>
                                             <input type='submit' value='OK' onClick={handleImage}/>
                                         </form>
                                     </div>

@@ -10,6 +10,8 @@ const express = require('express');
 const morgan = require('morgan');
 const dotEnv = require('dotenv');
 const cors = require('cors');
+const multer = require('multer');
+const upload = multer();
 const bodyParser = require('body-parser');
 const  { graphqlHTTP } = require('express-graphql');
 // top level module
@@ -131,7 +133,15 @@ app.post('/api/images', async (req, res) => {
             image: check.image
         })
     }
-})
+});
+
+app.post('/api/uploadfile', upload.single('uploadfile'), (req, res) => {
+    res.json({
+        name: req.file.originalname,
+        type: req.file.mimetype,
+        size: req.file.size
+    })
+});
 
 // OUR LOCALHOST.
 app.listen(process.env.PORT,() => console.log(`server listening is running successfully...`));
