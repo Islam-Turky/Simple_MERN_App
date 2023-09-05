@@ -4,12 +4,14 @@ our server.
 */
 require('./mongoDB');
 const { User, Admin, Social, profileImage } = require('./mongoDB');
+const schema = require('./schema/index');
 const mongoose = require('mongoose');
 const express = require('express');
 const morgan = require('morgan');
 const dotEnv = require('dotenv');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const  { graphqlHTTP } = require('express-graphql');
 // top level module
 const app = express();
 dotEnv.config();
@@ -18,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('common'));
 app.use(cors());
+app.use('/graphql', graphqlHTTP({ schema, graphiql: true }));
 
 // START OUR APPLICATION.
 app.get('/', (req, res) => {
