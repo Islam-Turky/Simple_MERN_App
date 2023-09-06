@@ -17,7 +17,7 @@ const Header = () => {
     const theName = window.localStorage.getItem('theName');
     const theEmail = window.localStorage.getItem('theEmail');
     const socialLinks = window.localStorage.getItem('social_media');
-    const myImage = window.localStorage.getItem('myImage');
+    // const myImage = window.localStorage.getItem('myImage');
 
     const confirmLinks =  async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
@@ -132,7 +132,7 @@ const Header = () => {
                                 <Popup trigger={<button className='pop-btn'>Setting</button>} modal nested>
                                     <div id="profile-setting">
                                         <h1>PROFILE</h1>
-                                        <div id="photoUpload" style={{ background: `url(${myImage}) no-repeat` }}>
+                                        <div id="photoUpload">
 
                                         </div>
                                         <form action="POST" >
