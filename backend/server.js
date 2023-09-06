@@ -11,12 +11,23 @@ const morgan = require('morgan');
 const dotEnv = require('dotenv');
 const cors = require('cors');
 const multer = require('multer');
-const upload = multer();
 const bodyParser = require('body-parser');
 const  { graphqlHTTP } = require('express-graphql');
 // top level module
 const app = express();
 dotEnv.config();
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'assets/')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname)
+    },
+});
+
+const upload = multer({ storage: storage });
+
 // Middleware.
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -135,12 +146,17 @@ app.post('/api/images', async (req, res) => {
     }
 });
 
-app.post('/api/uploadfile', upload.single('uploadfile'), (req, res) => {
-    res.json({
-        name: req.file.originalname,
-        type: req.file.mimetype,
-        size: req.file.size
-    })
+app.post('/api/upload/image', upload.single('file'), async (req, res) => {
+    const { path } = req.file;
+    const { email } = req.body;
+    const check = await profileImage.findOne({ email: email });
+    if (!check) {
+        await profileImage.insertMany([{ email: email, image: path }])
+        res.json({ msg: "image added succesfully", file_path: __dirname+path });
+    }else{
+        await check.updateOne({ image: path });
+        res.json({ msg: 'Image already exists', file_path: __dirname+path });
+    }
 });
 
 // OUR LOCALHOST.
