@@ -63,8 +63,7 @@ const Header = () => {
             return response;
         }).then((response) => response.json())
         .then((res) => {
-            const imageURL = URL.createObjectURL(res.blob);
-            window.localStorage.setItem('myImage' , imageURL);
+            window.localStorage.setItem('myImage' , URL.createObjectURL(res.blob));
         })
         .catch((error) => console.log(error))
     };
