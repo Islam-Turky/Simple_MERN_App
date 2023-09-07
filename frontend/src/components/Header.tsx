@@ -63,9 +63,10 @@ const Header = () => {
             return response;
         }).then((response) => response.json())
         .then((res) => {
-            window.localStorage.setItem('myImage' , URL.createObjectURL(res.blob));
+            window.localStorage.setItem('myImage' , res.blob);
         })
         .catch((error) => console.log(error))
+        window.location.reload();
     };
 
     const hiddenClass = () => {

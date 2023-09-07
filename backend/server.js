@@ -33,16 +33,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('common'));
 app.use(cors());
+app.use('/assets', express.static('assets'));
 app.use('/graphql', graphqlHTTP({ schema, graphiql: true }));
 
 // START OUR APPLICATION.
 app.get('/', (req, res) => {
-    // const allUsers = await User.find({});
-    // const allUserNames = allUsers.map(user => {
-    //     const { userName, email } = user;
-    //     return { userName: userName, email: email };
-    // });
-    // res.json(allUserNames);
 })
 
 app.post('/', async (req, res) => {
@@ -149,14 +144,14 @@ app.post('/api/images', async (req, res) => {
 
 app.post('/api/upload/image', upload.single('file'), async (req, res) => {
     const { email } = req.body;
-    const { originalname } = req.file;
+    const { path } = req.file;
     const check = await profileImage.findOne({ email: email });
     if (!check) {
-        await profileImage.insertMany([{ email: email, image: originalname }])
-        res.json({ msg: "image added succesfully", blob: originalname });
+        await profileImage.insertMany([{ email: email, image: "https://custom-portfolio.onrender.com/"+path }])
+        res.json({ msg: "image added succesfully", blob: "https://custom-portfolio.onrender.com/"+path });
     }else{
-        await check.updateOne({ image: originalname });
-        res.json({ msg: 'Image already exists', blob: originalname });
+        await check.updateOne({ image: "https://custom-portfolio.onrender.com/"+path });
+        res.json({ msg: 'Image already exists', blob: "https://custom-portfolio.onrender.com/"+path });
     }
 });
 
