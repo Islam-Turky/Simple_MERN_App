@@ -93,7 +93,7 @@ const Header = () => {
             <div className={theName? 'shown' : 'hidden'}>
                 <div id='sidebar'>
                     <div id='info-container'>
-                        <div id='profile-icon'></div>
+                        <img id='profile-icon' src={myImage || theImage.preview} alt='avatar'/>
                         <div><a href="#" onClick={() => {setShow(!show)}}><FaBars /></a></div>
                     </div>
                     <div id="wrapper" className={ show ? 'showSide' : 'hideSide' }>
@@ -139,9 +139,7 @@ const Header = () => {
                                 <Popup trigger={<button className='pop-btn'>Setting</button>} modal nested>
                                     <div id="profile-setting">
                                         <h1>PROFILE</h1>
-                                        <div id="photoUpload" style={{ backgroundImage: `url(${myImage})`, backgroundRepeat: 'no-repeat' }}>
-
-                                        </div>
+                                        <img id="photoUpload" src={myImage || theImage.preview} alt='avatar' />
                                         <form onSubmit={handleImageUpload} >
                                             <input type='file'  id='uploadfile' onChange={handleImageChange}/>
                                             <input type='submit' value='upload'  />
