@@ -117,7 +117,7 @@ const Header = () => {
                             </div>
                         </div>
                         <div className='hr'></div>
-                        <div className={socialLinks? 'hideSide' : 'side'}>
+                        <div className={socialLinks? 'hide-global' : 'side'}>
                             <div className="myLink">
                                 <Popup trigger={<button className='pop-btn'>Links Setting</button>} modal nested>
                                     <div id="social-links-settings">

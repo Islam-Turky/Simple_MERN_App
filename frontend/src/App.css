@@ -5,6 +5,14 @@
 #contact{
   height: 100vh;
 }
+
+.hide-global{
+  display: none;
+}
+
+.side{
+  padding: 5px;
+}
 /* Global */
 /* --------------------------- */
 /* Header Component */
@@ -60,6 +68,7 @@
   border-bottom: #b1ff1f 1px solid;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+  transition: .5s;
 }
 
 .showSide {
@@ -70,7 +79,7 @@
 }
 
 .hideSide {
-  display: none;
+  right: -250px;
 }
 
 #info-container{
@@ -125,10 +134,6 @@
 
 .pop-btn:hover{
   color: whitesmoke;
-}
-
-.side{
-  padding: 5px;
 }
 
 a{
