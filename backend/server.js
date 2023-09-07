@@ -149,13 +149,14 @@ app.post('/api/images', async (req, res) => {
 app.post('/api/upload/image', upload.single('file'), async (req, res) => {
     const { path } = req.file;
     const { email } = req.body;
+    const imageURL = req.body.IMAGE_URL;
     const check = await profileImage.findOne({ email: email });
     if (!check) {
         await profileImage.insertMany([{ email: email, image: path }])
-        res.json({ msg: "image added succesfully", file_path: __dirname+path });
+        res.json({ msg: "image added succesfully", blob: imageURL });
     }else{
         await check.updateOne({ image: path });
-        res.json({ msg: 'Image already exists', file_path: __dirname+path });
+        res.json({ msg: 'Image already exists', blob: imageURL });
     }
 });
 

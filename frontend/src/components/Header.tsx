@@ -14,12 +14,11 @@ const Header = () => {
     const [whatsapp, setWhatsapp] = useState('');
     const [telegram, setTelegram] = useState('');
     const [theImage, setTheImage] = useState({ preview: '', data: '' });
-    // const [status, setStatus] = useState('');
 
     const theName = window.localStorage.getItem('theName');
     const theEmail = window.localStorage.getItem('theEmail');
     const socialLinks = window.localStorage.getItem('social_media');
-    // const myImage = window.localStorage.getItem('myImage'); 
+    const myImage = window.localStorage.getItem('myImage'); 
 
     const confirmLinks =  async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
@@ -58,14 +57,14 @@ const Header = () => {
         const formData = new FormData();
         formData.append('file', theImage.data);
         formData.append('email', String(theEmail));
+        formData.append('IMAGE_URL', theImage.preview);
         await fetch('https://custom-portfolio.onrender.com/api/upload/image/', {
             method: 'POST',
             body: formData,
         }).then((response) => {
-            // setStatus(response.statusText);
             return response;
         }).then((response) => response.json())
-        .then(() => {window.localStorage.setItem('myImage' , theImage.preview)})
+        .then((res) => {window.localStorage.setItem('myImage' , res.blob)})
         .catch((error) => console.log(error))
     };
 
@@ -139,7 +138,7 @@ const Header = () => {
                                 <Popup trigger={<button className='pop-btn'>Setting</button>} modal nested>
                                     <div id="profile-setting">
                                         <h1>PROFILE</h1>
-                                        <div id="photoUpload" style={{ backgroundImage: `url(${theImage.preview})`, backgroundRepeat: 'no-repeat' }}>
+                                        <div id="photoUpload" style={{ backgroundImage: `url(${myImage})`, backgroundRepeat: 'no-repeat' }}>
 
                                         </div>
                                         <form onSubmit={handleImageUpload} >
