@@ -24,6 +24,7 @@ const Login = () => {
                     window.localStorage.setItem('theName', res.data.name);
                     window.localStorage.setItem('theEmail', email);
                     window.localStorage.setItem('social_media', res.data.mySocialLinks? JSON.stringify(res.data.mySocialLinks) : '');
+                    window.localStorage.setItem('myImage', res.data.blob);
                     history('/');
                 }else if(res.data.msg === 'User not found'){
                     alert('User not found');
