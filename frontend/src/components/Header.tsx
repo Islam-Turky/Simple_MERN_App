@@ -56,14 +56,16 @@ const Header = () => {
         const formData = new FormData();
         formData.append('file', theImage.data);
         formData.append('email', String(theEmail));
-        formData.append('IMAGE_URL', theImage.preview);
         await fetch('https://custom-portfolio.onrender.com/api/upload/image/', {
             method: 'POST',
             body: formData,
         }).then((response) => {
             return response;
         }).then((response) => response.json())
-        .then((res) => {window.localStorage.setItem('myImage' , res.blob)})
+        .then((res) => {
+            const imageURL = URL.createObjectURL(res.blob);
+            window.localStorage.setItem('myImage' , imageURL);
+        })
         .catch((error) => console.log(error))
     };
 
