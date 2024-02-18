@@ -32,7 +32,7 @@ const upload = multer({ storage: storage });
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('common'));
-app.use(cors());
+app.use(cors({ origin:"https://my-portfolio-tnuy.onrender.com/", }));
 app.use('/assets', express.static('assets'));
 app.use('/graphql', graphqlHTTP({ schema, graphiql: true }));
 
